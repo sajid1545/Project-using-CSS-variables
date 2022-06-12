@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Updating variable using <span>JS</span></h1>
+
+    <div class="controls">
+        <label for="space">Spacing:</label>
+        <input type="range" name="space" min="0" max="200" value="20" data-sizing="px">
+
+        <label for="blur">Blur:</label>
+        <input type="range" name="blur" min="0" max="20" value="10" data-sizing="px">
+
+        <label for="base">Base Colour</label>
+        <input type="color" name="base" value="#FFC300">
+    </div>
+    <img src="/pexels-sebastian-voortman-214574 (1).jpg">
+<style>
+
+
+:root{
+    --base:#FFC300;
+    --space:10px;
+    --blur:10px;
+}
+img{
+    padding: var(--space);
+    background: var(--base);
+    filter: blur(var(--blur));
+}
+span{
+    color: var(--base);
+}
+
+body{
+    text-align: center;
+    font-size: 30px;
+    font-family: cursive;
+    font-weight: 800;
+}
+.controls{
+    margin-bottom: 50px;
+}
+input{
+    width: 110px;
+}
+
+</style>
+<script>
+
+let inputs = document.querySelectorAll('input');
+
+function update(){
+    let px = this.dataset.sizing || ''
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + px)
+}
+
+inputs.forEach(input=>input.addEventListener('change',update))
+inputs.forEach(input=>input.addEventListener('mousemove',update))
+
+</script>
+</body>
+</html> 
